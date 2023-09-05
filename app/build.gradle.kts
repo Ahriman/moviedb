@@ -3,10 +3,10 @@ import org.jetbrains.kotlin.konan.properties.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+//    id("com.google.devtools.ksp")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("dagger.hilt.android.plugin") // TODO: Hace falta?
+    //id("dagger.hilt.android.plugin") // TODO: Hace falta?
 }
 
 android {
@@ -62,22 +62,29 @@ android {
 
 dependencies {
 
+//    implementation("com.android.support:multidex:1.0.3")
+
     // Navigation
     val navigationVersion = "2.7.1"
     implementation("androidx.navigation:navigation-compose:$navigationVersion")
 
     // Hilt
-    val hiltVersion = "2.44"
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+
+
+
+//    val hiltVersion = "2.44"
+////    implementation("com.google.dagger:hilt-android:$hiltVersion")
+////    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+////    ksp("com.google.dagger:hilt-compiler:2.35")
+////    ksp("androidx.hilt:hilt-compiler:1.0.0")
+//
 //    implementation("com.google.dagger:hilt-android:$hiltVersion")
-//    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-//    ksp("com.google.dagger:hilt-compiler:2.35")
-//    ksp("androidx.hilt:hilt-compiler:1.0.0")
-
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-
-    // SplashScreen
-    implementation("androidx.core:core-splashscreen:1.0.1")
+//    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+//
+//    // SplashScreen
+//    implementation("androidx.core:core-splashscreen:1.0.1")
 
     // Lifecycle
     val lifecycleVersion = "2.6.1"
@@ -108,4 +115,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+kapt {
+    correctErrorTypes = true
 }
